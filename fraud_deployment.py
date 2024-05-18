@@ -1,11 +1,27 @@
 import pickle
+import simplejson
 import streamlit as st
 import pandas as pd
+from streamlit_lottie import st_lottie
 
 
-## test comment
 
-# Define Dicts
+
+def load_lottiefile(filepath:str):
+   with open(filepath,'r') as f:
+      return simplejson.load(f)
+
+lottie_coding=load_lottiefile(r"C:\Users\dell\fraudDeployment\lottie.json")
+st_lottie(lottie_coding,speed=0.05,quality='high',height=300,width=700)
+
+st.title('Fraud Detection Web APP')
+st.info('Application for detecting the fraud')
+#C:\Users\dell\fraudDeployment\lottie2.json
+
+lottie2_coding=load_lottiefile(r"C:\Users\dell\fraudDeployment\lottie2.json")
+
+st_lottie(lottie2_coding,speed=0.05,quality='high',height=300,width=700)
+
 avgDict={'entertainment': 64.1282076003686,
  'food_dining': 51.14719567610285,
  'gas_transport': 63.43144276895249,
@@ -36,14 +52,14 @@ category_encode={'entertainment': 8,
  'shopping_pos': 13,
  'travel': 3}
 
-# load model
-data=pickle.load(open('Fraud_Detection.sav','rb'))
 
-st.title('Fraud Detection Web APP')
-st.info('Application for detecting the fraud')
+data=pickle.load(open(r'C:\Users\dell\fraudDeployment\Fraud_Detection.sav','rb'))
+scaledata=pickle.load(open(r'C:\Users\dell\fraudDeployment\saving stdScaler.sav','rb'))
+
+
 
 #Time=st.text_input('Time')
-category=st.selectbox('category',['entertainment',
+category=st.selectbox('Transaction Category',['entertainment',
  'food_dining',
  'gas_transport',
  'grocery_net',
@@ -57,24 +73,27 @@ category=st.selectbox('category',['entertainment',
  'shopping_net',
  'shopping_pos',
  'travel'])
-Amount=float(st.text_input('Amount'))
-Hour=st.text_input('Hour')
-Transaction_Diff=abs(Amount-avgDict[category])
+
+Amount=float(st.text_input('Transaction Amount'))
+Hour=st.slider('Trasaction occured Hour',0,23)
+
+Trasaction_Diff=abs(Amount-avgDict[category])
 
 df=pd.DataFrame({'0':[category_encode[category]],'1':[Amount],
                  '2':[Hour],
                  '3':[avgDict[category]],
-                 '4':[Transaction_Diff]}
+                 '4':[Trasaction_Diff]}
                 ,index=[0])
 
-df['0']=df['0'].astype(float)
-df['1']=df['1'].astype(float)
-df['2']=df['2'].astype(float)
-df['3']=df['3'].astype(float)
-df['4']=df['4'].astype(float)
+df=scaledata.transform(df)
+
 
 bt=st.button('Predict')
-#,'category':[category]
+
 if bt:
     result=data.predict(df)
-    st.write(result)
+    if result==0:
+     st.success('The Transaction is Not Fraud')
+     st.balloons()
+    else:
+       st.error('Be Careful !! it is a FRAUD Transaction ')
