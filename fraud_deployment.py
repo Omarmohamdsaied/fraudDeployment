@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 import pandas as pd
 
+# Define Dicts
 avgDict={'entertainment': 64.1282076003686,
  'food_dining': 51.14719567610285,
  'gas_transport': 63.43144276895249,
@@ -32,8 +33,8 @@ category_encode={'entertainment': 8,
  'shopping_pos': 13,
  'travel': 3}
 
-
-data=pickle.load(open(r'C:\Users\dell\Fraud_Detection.sav','rb'))
+# load model
+data=pickle.load(open(r'Fraud_Detection.sav','rb'))
 
 st.title('Fraud Detection Web APP')
 st.info('Application for detecting the fraud')
@@ -53,16 +54,14 @@ category=st.selectbox('category',['entertainment',
  'shopping_net',
  'shopping_pos',
  'travel'])
-
 Amount=float(st.text_input('Amount'))
 Hour=st.text_input('Hour')
-#Amount_average=st.text_input('Amount_average')
-Trasaction_Diff=abs(Amount-avgDict[category])
+Transaction_Diff=abs(Amount-avgDict[category])
 
 df=pd.DataFrame({'0':[category_encode[category]],'1':[Amount],
                  '2':[Hour],
                  '3':[avgDict[category]],
-                 '4':[Trasaction_Diff]}
+                 '4':[Transaction_Diff]}
                 ,index=[0])
 
 df['0']=df['0'].astype(float)
