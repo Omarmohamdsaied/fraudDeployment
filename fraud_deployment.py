@@ -11,14 +11,14 @@ def load_lottiefile(filepath:str):
    with open(filepath,'r') as f:
       return simplejson.load(f)
 
-lottie_coding=load_lottiefile(r"C:\Users\dell\fraudDeployment\lottie.json")
+lottie_coding=load_lottiefile("lottie.json")
 st_lottie(lottie_coding,speed=0.05,quality='high',height=300,width=700)
 
 st.title('Fraud Detection Web APP')
 st.info('Application for detecting the fraud')
 #C:\Users\dell\fraudDeployment\lottie2.json
 
-lottie2_coding=load_lottiefile(r"C:\Users\dell\fraudDeployment\lottie2.json")
+lottie2_coding=load_lottiefile("lottie2.json")
 
 st_lottie(lottie2_coding,speed=0.05,quality='high',height=300,width=700)
 
@@ -53,8 +53,8 @@ category_encode={'entertainment': 8,
  'travel': 3}
 
 
-data=pickle.load(open(r'C:\Users\dell\fraudDeployment\Fraud_Detection.sav','rb'))
-scaledata=pickle.load(open(r'C:\Users\dell\fraudDeployment\saving stdScaler.sav','rb'))
+data=pickle.load(open('Fraud_Detection.sav','rb'))
+scaledata=pickle.load(open('saving_stdScaler.sav','rb'))
 
 
 
