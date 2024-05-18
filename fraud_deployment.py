@@ -1,7 +1,6 @@
 import pickle
 import streamlit as st
 import pandas as pd
-import xgboost as xgb
 
 # Define Dicts
 avgDict={'entertainment': 64.1282076003686,
