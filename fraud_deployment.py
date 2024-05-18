@@ -34,7 +34,7 @@ category_encode={'entertainment': 8,
  'travel': 3}
 
 # load model
-data=pickle.load(open(r'Fraud_Detection.sav','rb'))
+data=pickle.load(open('Fraud_Detection.sav','rb'))
 
 st.title('Fraud Detection Web APP')
 st.info('Application for detecting the fraud')
