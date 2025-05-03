@@ -11,4 +11,14 @@ A robust fraud detection system can determine fraudulent activities and improve 
 
 ## Screenshots📸
 
-..
+<img src="Deployment/screenshots/Fraud1.jpg" alt="Description" width="500" style="border: 2px solid #ccc; border-radius: 8px;">
+
+<img src="Deployment/screenshots/fraud2.jpg" alt="Description" width="500" style="border: 2px solid #ccc; border-radius: 8px;">
+
+<img src="Deployment/screenshots/fraud3.jpg" alt="Description" width="500" style="border: 2px solid #ccc; border-radius: 8px;">
+
+
+## Developers👨‍💻
+
+- [Omar Mohamed Saied](https://github.com/Omarmohamdsaied)  
+- [Abdallah Ibrahim](https://github.com/Apolo151)  
